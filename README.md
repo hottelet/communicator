@@ -1,2 +1,2 @@
 # communicator
-A Scala/Akka/Phantom service designed to support a simple person-person chat system.
+A Scala/Akka/Phantom service designed to provide a communication platform for nearby (geographic) chat.
