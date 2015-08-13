@@ -11,6 +11,7 @@ object Boot extends App {
 
   val service = system.actorOf(Props[ApiServiceActor], "api-service")
   val userActor = system.actorOf(Props[UserActor], "users")
+  val messageActor = system.actorOf(Props[ChatActor], "messages")
 
   val interface = system.settings.config getString "communicator.interface"
   val port = system.settings.config getInt "communicator.port"
@@ -22,6 +23,6 @@ object Boot extends App {
     case t =>  IO(Http) ! Http.Bind(service, interface, port)
   }
   f onFailure {
-    case t => println("An error has occurred: " + t.getMessage)
+    case t => println("Unable to connect to cassandra because of: " + t.getMessage)
   }
 }
